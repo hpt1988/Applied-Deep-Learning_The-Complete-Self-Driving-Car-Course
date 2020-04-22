@@ -81,4 +81,9 @@ while(cap.isOpened()):
     combo_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
 
     cv2.imshow("result", combo_image)
-    cv2.waitKey(1) #waiting 1 milisecond between frames
+    
+    #closing video upon pressing the "q" key on the keyboard
+    if cv2.waitKey(1) == ord('q'): #waiting 1 milisecond between frames
+        break
+cap.release()
+cv2.destroyAllWindows()
