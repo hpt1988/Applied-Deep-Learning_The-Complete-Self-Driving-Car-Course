@@ -37,11 +37,10 @@ def canny(image):
     
     return canny
 
-def display_image(image, lines):
+def display_line(image, lines):
     line_image = np.zeros_like(image)
     if lines is not None:
-        for line in lines:
-            x1, y1, x2, y2 = line.reshape(4)
+        for x1, y1, x2, y2 in lines:
             cv2.line(line_image, (x1, y1), (x2, y2), (255, 0, 0), 10)
 
     return line_image
@@ -63,7 +62,7 @@ canny_image = canny(lane_image)
 cropped_image = region_of_interest(canny_image)
 lines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100, np.array([]), minLineLength=40, maxLineGap=5)
 averaged_lines = average_slope_intercept(lane_image, lines)
-line_image = display_image(lane_image, averaged_lines)
+line_image = display_line(lane_image, averaged_lines)
 combo_image = cv2.addWeighted(lane_image, 0.8, line_image, 1, 1)
 
 cv2.imshow("result", combo_image)
