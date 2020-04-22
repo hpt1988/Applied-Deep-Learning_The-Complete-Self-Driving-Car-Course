@@ -83,7 +83,7 @@ while(cap.isOpened()):
     cv2.imshow("result", combo_image)
     
     #closing video upon pressing the "q" key on the keyboard
-    if cv2.waitKey(1) == ord('q'): #waiting 1 milisecond between frames
+    if cv2.waitKey(1) & 0xFF == ord('q'): #waiting 1 milisecond between frames #masking the integer value we get from waitKey to 8 bits to ensure cross platform compatibility of code
         break
 cap.release()
 cv2.destroyAllWindows()
