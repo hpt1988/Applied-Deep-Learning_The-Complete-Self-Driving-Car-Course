@@ -1,2 +1,3 @@
 #ignoring the VS Code dependent files
 finding-lanes/.vscode
+perceptron/.ipynb_checkpoints
